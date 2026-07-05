@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>부동산 두더지 게임 | Real Estate Whack-a-Mole</title>
+  <meta name="description" content="규제지역을 누르면 인접 지역이 튀어오르는 부동산 풍선효과 풍자 게임" />
+  <style>
+    :root{--bg:#fff7ec;--card:#ffffff;--ink:#2d241f;--muted:#7b6d62;--brand:#ff8a3d;--brand2:#ffd6a8;--danger:#e85d4f;--green:#78b66b;--line:#ead7c3}
+    *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,#fff7ec,#f8efe7);color:var(--ink)}
+    .wrap{max-width:520px;margin:0 auto;min-height:100dvh;padding:18px 14px 28px}.card{background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:26px;box-shadow:0 12px 30px rgba(80,45,10,.08);overflow:hidden}
+    header{padding:20px 18px 12px;text-align:center}.badge{display:inline-flex;gap:6px;align-items:center;padding:6px 12px;border-radius:999px;background:#fff0df;border:1px solid #ffd4a5;color:#a74d13;font-weight:800;font-size:13px}.title{margin:12px 0 6px;font-size:27px;line-height:1.15;letter-spacing:-.04em}.sub{margin:0;color:var(--muted);font-size:14px;line-height:1.5}.hero{padding:8px 18px 18px;text-align:center}.start-illust{font-size:72px;filter:drop-shadow(0 6px 0 rgba(0,0,0,.06));animation:bob 1.6s infinite ease-in-out}.btn{border:0;border-radius:18px;background:var(--brand);color:white;font-weight:900;font-size:17px;width:100%;min-height:58px;cursor:pointer;box-shadow:0 8px 0 #d86620;transition:.08s transform,.08s box-shadow}.btn:active{transform:translateY(5px);box-shadow:0 3px 0 #d86620}.btn.secondary{background:#fff;border:1px solid var(--line);color:var(--ink);box-shadow:none}.hud{display:flex;gap:8px;padding:12px;background:#fff5e9;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.hud>div{flex:1;background:white;border:1px solid var(--line);border-radius:16px;padding:10px;text-align:center}.hud b{display:block;font-size:20px}.hud span{font-size:11px;color:var(--muted);font-weight:800}.map{position:relative;height:520px;margin:14px;border-radius:24px;background:radial-gradient(circle at 50% 30%,#fffdf8 0,#fff4df 52%,#f3dfbf 100%);border:1px solid var(--line);overflow:hidden}.map:before{content:"대한민국 부동산 지도";position:absolute;top:14px;left:50%;transform:translateX(-50%);font-weight:900;color:#8f6a45;background:rgba(255,255,255,.72);padding:7px 12px;border-radius:999px;font-size:13px}.city{position:absolute;width:112px;height:102px;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center}.hole{position:absolute;bottom:8px;width:78px;height:20px;border-radius:50%;background:#93613b;box-shadow:inset 0 4px 8px rgba(0,0,0,.25)}.mole{position:absolute;bottom:14px;width:82px;height:76px;border-radius:22px 22px 18px 18px;background:#fff;border:3px solid #ad7141;box-shadow:0 6px 0 rgba(0,0,0,.1);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transform:translateY(78px);transition:.18s transform cubic-bezier(.18,.85,.35,1.25);user-select:none}.city.active .mole{transform:translateY(0)}.mole .house{font-size:31px;line-height:1}.mole .name{font-size:13px;font-weight:900;margin-top:2px;background:#fff2db;border-radius:999px;padding:2px 8px}.city.hot .mole{border-color:var(--danger);animation:shake .45s infinite}.city.hot .name{color:var(--danger)}.hammer{position:absolute;right:18px;bottom:18px;font-size:34px;transform:rotate(-18deg);background:white;border:1px solid var(--line);border-radius:18px;padding:8px 12px;box-shadow:0 8px 18px rgba(0,0,0,.08)}.toast{min-height:42px;margin:0 14px 14px;border-radius:16px;background:#2d241f;color:#fff;padding:12px;text-align:center;font-weight:900}.explain{padding:0 18px 18px;color:var(--muted);font-size:13px;line-height:1.55}.result{padding:22px 18px;text-align:center}.result h2{font-size:24px;margin:0 0 8px}.result p{line-height:1.7;color:var(--muted)}.sharebox{display:grid;gap:10px;margin-top:16px}.hidden{display:none!important}.disclaimer{margin:14px;padding:12px;border-radius:16px;background:#fff;border:1px dashed #d8bea4;color:#816a55;font-size:12px;line-height:1.5}.pulse{position:absolute;pointer-events:none;color:#e85d4f;font-weight:1000;animation:float 850ms ease-out forwards;text-shadow:0 2px 0 white}.small{font-size:12px;color:var(--muted);line-height:1.55;margin-top:10px}@keyframes bob{50%{transform:translateY(-8px)}}@keyframes shake{25%{transform:translateY(0) rotate(-2deg)}75%{transform:translateY(0) rotate(2deg)}}@keyframes float{from{opacity:1;transform:translate(-50%,-10px) scale(.9)}to{opacity:0;transform:translate(-50%,-70px) scale(1.15)}}
+    @media (max-width:420px){.map{height:500px;margin:12px}.city{width:96px}.mole{width:72px}.title{font-size:25px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section id="start" class="card">
+      <header><div class="badge">🎮 부동산 풍선효과 풍자게임</div><h1 class="title">부동산 두더지<br>Real Estate Whack-a-Mole</h1><p class="sub">규제망치로 한 지역을 누르면<br>옆 지역의 집값 두더지가 다시 튀어오릅니다.</p></header>
+      <div class="hero"><div class="start-illust">🏠🔨</div><button class="btn" id="startBtn">30초 실험 시작</button><p class="small">모바일에서 가장 잘 작동합니다. 정치·투자 조언이 아닌 풍자형 미니게임입니다.</p></div>
+    </section>
+
+    <section id="game" class="card hidden">
+      <div class="hud"><div><span>정책 발표</span><b id="score">0회</b></div><div><span>남은 시간</span><b id="time">30초</b></div><div><span>풍선효과</span><b id="combo">0</b></div></div>
+      <div class="map" id="map">
+        <div class="city" data-name="강남" data-near="과천,하남,구리" style="left:55%;top:24%"><div class="hole"></div><button class="mole"><span class="house">🏠</span><span class="name">강남</span></button></div>
+        <div class="city" data-name="과천" data-near="강남,하남,동탄" style="left:34%;top:34%"><div class="hole"></div><button class="mole"><span class="house">🏘️</span><span class="name">과천</span></button></div>
+        <div class="city" data-name="하남" data-near="강남,구리,다산" style="left:67%;top:36%"><div class="hole"></div><button class="mole"><span class="house">🏡</span><span class="name">하남</span></button></div>
+        <div class="city" data-name="동탄" data-near="기흥,과천" style="left:25%;top:58%"><div class="hole"></div><button class="mole"><span class="house">🏠</span><span class="name">동탄</span></button></div>
+        <div class="city" data-name="기흥" data-near="동탄,구리,다산" style="left:50%;top:63%"><div class="hole"></div><button class="mole"><span class="house">🏘️</span><span class="name">기흥</span></button></div>
+        <div class="city" data-name="구리" data-near="강남,하남,다산" style="left:74%;top:58%"><div class="hole"></div><button class="mole"><span class="house">🏡</span><span class="name">구리</span></button></div>
+        <div class="city" data-name="다산" data-near="구리,하남,기흥" style="left:66%;top:78%"><div class="hole"></div><button class="mole"><span class="house">🏠</span><span class="name">다산</span></button></div>
+        <div class="hammer">🔨</div>
+      </div>
+      <div class="toast" id="toast">집값 상승! 규제망치로 눌러보세요.</div>
+      <p class="explain">맞춘 지역은 내려가지만, 인접 지역에서 즉시 새로운 두더지가 튀어나옵니다. 게임은 의도적으로 쉽게 끝나지 않습니다.</p>
+    </section>
+
+    <section id="end" class="card hidden">
+      <div class="result"><div class="start-illust">🏠🔨</div><h2>정책 발표 <span id="finalScore">0</span>회</h2><p><b>풍선효과는 계속 발생했습니다.</b><br>한 곳을 누르면 다른 곳이 튀어오르는 현상. 과연 망치질만으로 해결될까요?</p><h2>문제를 두드릴 것인가,<br>원인을 해결할 것인가?</h2><div class="sharebox"><button class="btn" id="againBtn">다시 하기</button><button class="btn secondary" id="copyBtn">링크 복사</button></div><p class="small">블로그 글에 삽입할 때는 이 HTML 파일을 별도 호스팅한 뒤 링크 버튼으로 연결하는 방식을 추천합니다.</p></div>
+    </section>
+    <div class="disclaimer">※ 이 게임은 부동산 정책의 반복적 규제·풍선효과를 설명하기 위한 풍자형 콘텐츠입니다. 특정 지역의 가격 전망, 투자 판단, 정책 자문이 아닙니다.</div>
+  </main>
+<script>
+(() => {
+  const start = document.getElementById('start'), game = document.getElementById('game'), end = document.getElementById('end');
+  const startBtn = document.getElementById('startBtn'), againBtn = document.getElementById('againBtn'), copyBtn = document.getElementById('copyBtn');
+  const scoreEl = document.getElementById('score'), timeEl = document.getElementById('time'), comboEl = document.getElementById('combo'), toast = document.getElementById('toast'), finalScore = document.getElementById('finalScore');
+  const cities = Array.from(document.querySelectorAll('.city'));
+  const messages = ['풍선효과 발생!', '수요 이동!', '규제 확대!', '옆 동네 급등!', '매물 잠김!', '기대심리 확산!', '또 다른 두더지 등장!'];
+  let active = null, score = 0, combo = 0, time = 30, timer = null, moleTimer = null, playing = false;
+  function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+  function setActive(city){ cities.forEach(c=>c.classList.remove('active','hot')); active = city; city.classList.add('active','hot'); toast.textContent = `${city.dataset.name} 집값 상승!`; }
+  function nextFrom(city){ const nearNames = (city?.dataset.near || '').split(',').filter(Boolean); const near = cities.filter(c => nearNames.includes(c.dataset.name)); return pick(near.length ? near : cities.filter(c=>c!==city)); }
+  function pulse(text, city){ const p=document.createElement('div'); p.className='pulse'; p.textContent=text; p.style.left=city.style.left; p.style.top=city.style.top; document.getElementById('map').appendChild(p); setTimeout(()=>p.remove(),900); }
+  function randomMoleLoop(){ clearInterval(moleTimer); moleTimer = setInterval(()=>{ if(!playing) return; if(Math.random() < .35) setActive(pick(cities)); }, 1800); }
+  function begin(){ score=0; combo=0; time=30; playing=true; scoreEl.textContent='0회'; comboEl.textContent='0'; timeEl.textContent='30초'; start.classList.add('hidden'); end.classList.add('hidden'); game.classList.remove('hidden'); setActive(pick(cities)); randomMoleLoop(); clearInterval(timer); timer=setInterval(()=>{ time--; timeEl.textContent=time+'초'; if(time<=0) finish(); },1000); }
+  function finish(){ playing=false; clearInterval(timer); clearInterval(moleTimer); cities.forEach(c=>c.classList.remove('active','hot')); game.classList.add('hidden'); end.classList.remove('hidden'); finalScore.textContent=score; }
+  cities.forEach(city=>{ city.querySelector('.mole').addEventListener('click', () => { if(!playing || city!==active) return; score++; combo++; scoreEl.textContent=score+'회'; comboEl.textContent=combo; pulse('규제!', city); toast.textContent=pick(messages); city.classList.remove('active','hot'); setTimeout(()=>setActive(nextFrom(city)), 160); }); });
+  startBtn.addEventListener('click', begin); againBtn.addEventListener('click', begin);
+  copyBtn.addEventListener('click', async()=>{ try{ await navigator.clipboard.writeText(location.href); copyBtn.textContent='복사 완료!'; }catch(e){ copyBtn.textContent='주소창 링크를 복사하세요'; } setTimeout(()=>copyBtn.textContent='링크 복사',1500); });
+})();
+</script>
+</body>
+</html>
